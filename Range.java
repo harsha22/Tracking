@@ -2,10 +2,26 @@ package Tracking;
 
 public class Range {
 
-    protected int lo;
-    protected int hi;
+    private int lo;
+    private int hi;
     
-    public Range(int lo, int hi){
+    public int getLo() {
+		return lo;
+	}
+	
+	public void setLo(int lo) {
+		this.lo = lo;
+	}
+
+	public void setHi(int hi) {
+		this.hi = hi;
+	}
+
+	public int getHi() {
+		return hi;
+	}
+	
+	public Range(int lo, int hi){
     	this.lo = lo;
     	this.hi = hi;
     }
