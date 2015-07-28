@@ -20,30 +20,34 @@ class TrackingRecord {
 		for (TrackingRecord t : records) {
 
 			String rl = this.r.classify(t.r);
-			if (rl == "SAME") {
+			if (rl == "SAME" || rl == "SUPERSET") {
+				if(!newRecords.contains(this))
 				newRecords.add(this);
 			}
-
-			else if (rl == "SUPERSET") {
-				newRecords.add(this);
-			}
-
+			
 			else if (rl == "SUBSET") {
 				if (!(this.transfer_code == t.transfer_code)
 						|| !(this.status_code == t.status_code)) {
-					newRecords.add(this);
+					if(!newRecords.contains(this))
+						newRecords.add(this);
 					newRecords.add(new TrackingRecord(t.r.getLo(), this.r.getLo() - 1,t.status_code, t.transfer_code));
 					newRecords.add(new TrackingRecord(this.r.getHi() + 1, t.r.getHi(),t.status_code, t.transfer_code));
 				}
-			} else if (rl == "MOREDISJOINT" || rl == "LESSDISJOINT") {
-				newRecords.add(this);
+			} 
+			else if (rl == "MOREDISJOINT" || rl == "LESSDISJOINT") {
+				if(!newRecords.contains(this))
+					newRecords.add(this);
 				newRecords.add(t);
-			} else if (rl == "LESSOVERLAP") {
+			} 
+			else if (rl == "LESSOVERLAP") {
 				newRecords.add(new TrackingRecord(this.r.getHi() + 1, t.r.getHi(),t.status_code, t.transfer_code));
-				newRecords.add(this);
-			} else if (rl == "MOREOVERLAP") {
+				if(!newRecords.contains(this))
+					newRecords.add(this);
+			} 
+			else if (rl == "MOREOVERLAP") {
 				newRecords.add(new TrackingRecord(t.r.getLo(), this.r.getLo() - 1,t.status_code, t.transfer_code));
-				newRecords.add(this);
+				if(!newRecords.contains(this))
+					newRecords.add(this);
 			}
 		}
 		return newRecords;

@@ -21,6 +21,7 @@ class Tracking {
 		records = tr.classify(records);
 		this.sort();
 	}
+	
 	private void sort() {
 		Collections.sort(records, new Comparator<TrackingRecord>() {
 			public int compare(TrackingRecord t1, TrackingRecord t2) {
@@ -28,11 +29,13 @@ class Tracking {
 			}
 		});
 	}
+	
     private void print(){
     	for(TrackingRecord tr : records){
     		tr.print(); //add print function
     	}
     }
+    
 	public static void main(String args[]) {
 
 		Tracking t = new Tracking();
