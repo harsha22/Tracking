@@ -111,12 +111,12 @@ class Tracking {
 
 	public static void main(String[] args) {
 		List<Tracking> records = new ArrayList<Tracking>();
-		Tracking t = new Tracking('A', 1, new Range(80,90));
-		records = addRecords(records, t);
-		Tracking t2 = new Tracking('A', 1, new Range(70,85));
+		Tracking t = new Tracking('A', 1, new Range(1,10000));
+		records = addRecords(records, t);;
+		Tracking t3 = new Tracking('C', 2, new Range(12000, 12999));
+		records = addRecords(records, t3);
+		Tracking t2 = new Tracking('B', 2, new Range(12345,12345));
 		records = addRecords(records, t2);
-//		Tracking t3 = new Tracking('C', 2, new Range(12000, 12999));
-//		records = addRecords(records, t3);
 		sortRecords(records);
                 records = mergeRecords(records);
                 printRecords(records);
