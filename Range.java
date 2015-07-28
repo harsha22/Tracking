@@ -20,7 +20,10 @@ public class Range {
 	public int getHi() {
 		return hi;
 	}
-	
+	public Range(){
+		hi = -1;
+		lo = -1;
+	}
 	public Range(int lo, int hi){
     	this.lo = lo;
     	this.hi = hi;
@@ -43,28 +46,26 @@ public class Range {
     public boolean lessThan(Range r) {
         return this.lo < r.lo;
     }
-    public enum Relation {
-        SUBSET, SUPERSET, LESSOVERLAP, MOREOVERLAP, LESSDISJOINT, MOREDISJOINT, SAME;
-    }
-    public Relation classify(Range r) {
+    
+    public String classify(Range r) {
     	
         if (this.equals(r))
-            return Relation.SAME;
+            return "SAME";
         
         if (this.contains(r)) 
-            return Relation.SUPERSET;
+            return "SUPERSET";
         
         if (r.contains(this))
-            return Relation.SUBSET;
+            return "SUBSET";
         
         if (this.isDisjoint(r))
             if (this.lo > r.hi)
-                return Relation.MOREDISJOINT;
+                return "MOREDISJOINT";
             else
-                return Relation.LESSDISJOINT;
+                return "LESSDISJOINT";
                 
         if (this.lessThan(r))
-            return Relation.LESSOVERLAP;
-        	return Relation.MOREOVERLAP;
+            return "LESSOVERLAP";
+        	return "MOREOVERLAP";
     }
 }
